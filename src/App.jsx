@@ -5,6 +5,11 @@ const App = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleConnectWallet = async () => {
+    if (window.solana && window.solana.isPhantom) {
+      alert("Phantom wallet detected! Please disable Phantom for better compatibility.");
+      return;
+    }
+
     try {
       await switchToPolygon();
       setModalOpen(true);
